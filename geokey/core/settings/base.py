@@ -41,13 +41,16 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django.contrib.sites',
 
-    # third-party apps
+    # Third-party apps
     'django_hstore',
     'oauth2_provider',
     'easy_thumbnails',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
     'rest_framework',
     'rest_framework_gis',
 

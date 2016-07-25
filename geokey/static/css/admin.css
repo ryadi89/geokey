@@ -215,6 +215,22 @@ ul.type-away {
 	border-top: 0;
 }
 
+.social h1,
+.social h2,
+.social h3,
+.social h4,
+.social h5,
+.social h6 {
+    display: inline-block;
+}
+.social img {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-top: -4px;
+    margin-right: 4px;
+}
+
 .list-group-item.active a {
 	color: #fff;
 }
