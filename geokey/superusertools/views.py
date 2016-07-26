@@ -190,6 +190,30 @@ class PlatformSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):
         return self.render_to_response(context)
 
 
+class ProviderList(LoginRequiredMixin, SuperuserMixin, TemplateView):
+    """A list of providers page."""
+
+    template_name = 'superusertools/provider_list.html'
+
+
+class ProviderInstall(LoginRequiredMixin, SuperuserMixin, TemplateView):
+    """Install a provider page."""
+
+    template_name = 'superusertools/provider_install.html'
+
+
+class ProviderSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):
+    """Settings of a provider page."""
+
+    template_name = 'superusertools/provider_settings.html'
+
+
+class ProviderDelete(LoginRequiredMixin, SuperuserMixin, TemplateView):
+    """Delete a provider."""
+
+    template_name = 'base.html'
+
+
 # #############################################################################
 #
 # AJAX API
