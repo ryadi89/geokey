@@ -134,6 +134,16 @@ ACCOUNT_FORMS = {
     'change_password': 'geokey.users.forms.CustomPasswordChangeForm',
     'reset_password_from_key': 'geokey.users.forms.CustomResetPasswordKeyForm'
 }
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {
+            'access_type': 'online'
+        }
+    }
+}
+
 
 SITE_ROOT = dirname(dirname(dirname(abspath(__file__))))
 STATICFILES_DIRS = [join(SITE_ROOT, 'static')]
