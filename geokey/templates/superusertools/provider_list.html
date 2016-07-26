@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} | Superuser tools: Providers{% endblock %}
+
+{% block main %}
+<div class="page-header">
+    <div class="container">
+        <h1>Superuser tools</h1>
+        {% include 'superusertools/navigation.html' %}
+    </div>
+</div>
+
+<div class="container">
+    {% include 'snippets/messages.html' %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="alert alert-info">
+                <p>Providers allow users to connect their social accounts and sign in to the {{ PLATFORM_NAME }} using them.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <h3 class="header">Providers</h3>
+
+            {% for provider in providers %}
+                {% if forloop.first %}
+                    <ul class="list-unstyled overview-list social">
+                {% endif %}
+
+                <li>
+                    {% if not provider.app %}
+                        <a href="{% url 'admin:superusertools_provider_install' provider.name|lower %}" class="btn btn-default pull-right">Install</a>
+                    {% else %}
+                        <a href="{% url 'admin:superusertools_provider_remove' provider.name|lower %}" class="btn btn-default pull-right">Remove</a>
+                    {% endif %}
+
+                    <img src="/static/img/social/{{ provider.name|lower }}.svg" alt="{{ provider.name }}" />
+                    <h5>{{ provider.name }}</h5>
+                </li>
+
+                {% if forloop.last %}
+                    </ul>
+                {% endif %}
+            {% empty %}
+                <div class="well empty-list">
+                    <p class="lead">There are no providers available.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

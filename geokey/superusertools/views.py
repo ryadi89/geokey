@@ -7,6 +7,8 @@ from django.contrib.sites.shortcuts import get_current_site
 
 from braces.views import LoginRequiredMixin
 from allauth.account.models import EmailAddress
+from allauth.socialaccount import providers
+from allauth.socialaccount.models import SocialApp
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -150,13 +152,26 @@ class PlatformSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):
         """
         Return the context to render the view.
 
-        Add a current site to the context.
+        Add a current site and social providers to the context.
 
         Returns
         -------
         dict
         """
-        return {'site': get_current_site(self.request)}
+        social_providers = providers.registry.get_list()
+
+        for social_provider in social_providers:
+            try:
+                app = SocialApp.objects.get(name=social_provider.name)
+            except SocialApp.DoesNotExist:
+                app = None
+
+            social_provider.app = app
+
+        return {
+            'site': get_current_site(self.request),
+            'social_providers': social_providers
+        }
 
     def post(self, request):
         """
@@ -194,6 +209,26 @@ class ProviderList(LoginRequiredMixin, SuperuserMixin, TemplateView):
     """A list of providers page."""
 
     template_name = 'superusertools/provider_list.html'
+
+    def get_context_data(self):
+        """
+        Return the context to render the view.
+
+        Add all providers to the context.
+
+        Returns
+        -------
+        dict
+        """
+        all_providers = providers.registry.get_list()
+
+        for provider in all_providers:
+            try:
+                provider.app = SocialApp.objects.get(name=provider.name)
+            except SocialApp.DoesNotExist:
+                provider.app = None
+
+        return {'providers': all_providers}
 
 
 class ProviderInstall(LoginRequiredMixin, SuperuserMixin, TemplateView):

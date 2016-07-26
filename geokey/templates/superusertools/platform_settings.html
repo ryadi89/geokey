@@ -14,11 +14,11 @@
     {% include 'snippets/messages.html' %}
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h3 class="header">Platform settings</h3>
-
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
             <form method="POST" action="{% url 'admin:superusertools_platform_settings' %}" novalidate>
                 {% csrf_token %}
+
+                <h3 class="header">General settings</h3>
 
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -26,9 +26,45 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Domain</label>
+                    <label for="domain">Domain</label>
                     <input type="url" id="domain" class="form-control input-lg" name="domain" maxlength="100" value="{{ site.domain }}" required />
                 </div>
+
+                {% if social_providers %}
+                    <h3 class="header">Social providers</h3>
+
+                    <ul class="list-group social">
+                        {% for social_provider in social_providers %}
+                            <li class="list-group-item">
+                                {% if not social_provider.app %}
+                                    <a href="" class="btn btn-sm1 btn-default pull-right">Install</a>
+                                {% else %}
+                                    <a href="" class="btn btn-sm1 btn-default pull-right">Remove</a>
+                                {% endif %}
+
+                                <img src="/static/img/social/{{ social_provider.name|lower }}.svg" alt="{{ social_provider.name }}" />
+                                <h4>{{ social_provider.name }}</h4>
+
+                                {% if social_provider.app %}
+                                    <div class="form-group">
+                                        <label for="{{ social_provider.name|lower }}-client-id">Client ID</label>
+                                        <input type="text" id="{{ social_provider.name|lower }}-client-id" class="form-control input-lg" name="{{ social_provider.name|lower }}-client-id" maxlength="100" value="{{ social_provider.app.client_id }}" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="{{ social_provider.name|lower }}-secret">Secret</label>
+                                        <input type="text" id="{{ social_provider.name|lower }}-secret" class="form-control input-lg" name="{{ social_provider.name|lower }}-secret" maxlength="100" value="{{ social_provider.app.secret }}" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="{{ social_provider.name|lower }}-key">Key</label>
+                                        <input type="text" id="{{ social_provider.name|lower }}-key" class="form-control input-lg" name="{{ social_provider.name|lower }}-key" maxlength="100" value="{{ social_provider.app.key }}" />
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Save</button>
