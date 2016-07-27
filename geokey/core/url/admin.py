@@ -224,9 +224,6 @@ urlpatterns = [
         superusertools.ProviderList.as_view(),
         name='superusertools_provider_list'),
     url(r'^superuser-tools/providers/(?P<provider_id>[\w-]+)/$',
-    url(r'^superuser-tools/providers/(?P<provider_id>[\w-]+)/delete/$',
-        superusertools.ProviderDelete.as_view(),
-        name='superusertools_provider_delete'),
         superusertools.ProviderOverview.as_view(),
         name='superusertools_provider_overview'),
 ]
