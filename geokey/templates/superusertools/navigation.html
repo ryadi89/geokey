@@ -15,7 +15,7 @@
         <a href="{% url 'admin:superusertools_platform_settings' %}">Platform settings</a>
     </li>
 
-    <li role="presentation" class="{% if request.resolver_match.url_name == 'superusertools_provider_list' %}active{% endif %}">
+    <li role="presentation" class="{% if 'superusertools_provider' in request.resolver_match.url_name %}active{% endif %}">
         <a href="{% url 'admin:superusertools_provider_list' %}">Providers</a>
     </li>
 </ul>
