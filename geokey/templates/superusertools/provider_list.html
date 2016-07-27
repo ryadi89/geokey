@@ -30,8 +30,8 @@
                 {% endif %}
 
                 <li>
-                    <img src="/static/img/social/{{ provider.name|lower }}.svg" alt="{{ provider.name }}" />
-                    <h4><a role="button" href="{% url 'admin:superusertools_provider_overview' provider.name|lower %}">{{ provider.name }}</a></h4>
+                    <img src="/static/img/social/{{ provider.id }}.svg" alt="{{ provider.name }}" />
+                    <h4><a role="button" href="{% url 'admin:superusertools_provider_overview' provider.id %}">{{ provider.name }}</a></h4>
                 </li>
 
                 {% if forloop.last %}
