@@ -198,7 +198,7 @@ urlpatterns = [
     # ###########################
     url(r'^profile/$',
         login_views.UserProfile.as_view(),
-        name="userprofile"),
+        name='userprofile'),
 
     # ###########################
     # SUPERUSER TOOLS
