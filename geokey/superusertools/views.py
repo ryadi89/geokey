@@ -206,7 +206,7 @@ class PlatformSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):
 
 
 class ProviderList(LoginRequiredMixin, SuperuserMixin, TemplateView):
-    """A list of providers page."""
+    """A list of all providers page."""
 
     template_name = 'superusertools/provider_list.html'
 
@@ -220,21 +220,7 @@ class ProviderList(LoginRequiredMixin, SuperuserMixin, TemplateView):
         -------
         dict
         """
-        all_providers = providers.registry.get_list()
-
-        for provider in all_providers:
-            try:
-                provider.app = SocialApp.objects.get(name=provider.name)
-            except SocialApp.DoesNotExist:
-                provider.app = None
-
-        return {'providers': all_providers}
-
-
-class ProviderInstall(LoginRequiredMixin, SuperuserMixin, TemplateView):
-    """Install a provider page."""
-
-    template_name = 'superusertools/provider_install.html'
+        return {'providers': providers.registry.get_list()}
 
 
 class ProviderSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):

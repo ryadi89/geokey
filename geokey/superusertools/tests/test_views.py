@@ -29,6 +29,7 @@ from geokey.superusertools.views import (
     ManageInactiveUsers,
     ManageProjects,
     PlatformSettings,
+    ProviderList,
     SuperusersAjaxView,
     SingleSuperuserAjaxView
 )
@@ -459,6 +460,46 @@ class PlatformSettingsTest(TestCase):
         reference = Site.objects.latest('id')
         self.assertEqual(reference.name, data.get('name'))
         self.assertEqual(reference.domain, data.get('domain'))
+
+
+class ProviderListTest(TestCase):
+    """Test a list of all providers page."""
+
+    def setUp(self):
+        """Set up test."""
+        self.url = reverse('admin:superusertools_provider_list')
+
+    def test_get_context_data(self):
+        """Test getting context data."""
+        view = ProviderList()
+        view.request = APIRequestFactory().get(self.url)
+        context = view.get_context_data()
+
+        self.assertIsNotNone(context.get('providers'))
+
+    def test_get_with_anonymous(self):
+        """Test GET with anonymous user."""
+        view = ProviderList.as_view()
+        request = APIRequestFactory().get(self.url)
+        request.user = AnonymousUser()
+        view.request = request
+        response = view(request)
+
+        self.assertTrue(isinstance(response, HttpResponseRedirect))
+
+    def test_get_with_user(self):
+        """Test GET with user."""
+        view = ProviderList.as_view()
+        request = APIRequestFactory().get(self.url)
+        request.user = UserFactory.create(**{'is_superuser': False})
+        view.request = request
+        response = view(request).render()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            'No rights to access superuser tools.'
+        )
 
 
 # #############################################################################

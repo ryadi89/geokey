@@ -17,6 +17,7 @@
         <div class="col-sm-4">
             <div class="alert alert-info">
                 <p>Providers allow users to connect their social accounts and sign in to the {{ PLATFORM_NAME }} using them.</p>
+                <p>In order to enable a provider, the application must be registered on its API tools to retrieve the required credentials.</p>
             </div>
         </div>
 
@@ -29,14 +30,8 @@
                 {% endif %}
 
                 <li>
-                    {% if not provider.app %}
-                        <a href="{% url 'admin:superusertools_provider_install' provider.name|lower %}" class="btn btn-default pull-right">Install</a>
-                    {% else %}
-                        <a href="{% url 'admin:superusertools_provider_remove' provider.name|lower %}" class="btn btn-default pull-right">Remove</a>
-                    {% endif %}
-
                     <img src="/static/img/social/{{ provider.name|lower }}.svg" alt="{{ provider.name }}" />
-                    <h5>{{ provider.name }}</h5>
+                    <h4><a role="button" href="{% url 'admin:superusertools_provider_overview' provider.name|lower %}">{{ provider.name }}</a></h4>
                 </li>
 
                 {% if forloop.last %}
