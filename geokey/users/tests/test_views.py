@@ -1049,7 +1049,8 @@ class AccountDisconnectTest(TestCase):
             secret='xxxxxxxxxxxxxxxxxx',
             key='')
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='none')
     def test_get_with_anonymous(self):
         user = UserFactory.create(password='myPassword2016')
 
@@ -1073,7 +1074,8 @@ class AccountDisconnectTest(TestCase):
         self.assertTrue(isinstance(response, HttpResponseRedirect))
         self.assertEqual(SocialAccount.objects.count(), 1)
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='none')
     def test_get_with_user(self):
         user = UserFactory.create(password='myPassword2016')
 
@@ -1103,7 +1105,8 @@ class AccountDisconnectTest(TestCase):
         self.assertTrue(
             'The account has been disconnected.' in msg.message)
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='none')
     def test_get_with_user_when_not_personal_account(self):
         user = UserFactory.create(password='myPassword2016')
 
@@ -1133,7 +1136,8 @@ class AccountDisconnectTest(TestCase):
         self.assertTrue(
             'The account could not be found.' in msg.message)
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='none')
     def test_get_with_user_when_not_exist(self):
         user = UserFactory.create(password='myPassword2016')
 
@@ -1163,7 +1167,8 @@ class AccountDisconnectTest(TestCase):
         self.assertTrue(
             'The account could not be found.' in msg.message)
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='none')
     def test_get_with_user_when_no_password(self):
         user = UserFactory.create(password='')
 
@@ -1193,9 +1198,10 @@ class AccountDisconnectTest(TestCase):
         self.assertTrue(
             'Your account has no password set up.' in msg.message)
 
-    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True)
+    @override_settings(SOCIALACCOUNT_AUTO_SIGNUP=True,
+                       ACCOUNT_EMAIL_VERIFICATION='mandatory')
     def test_get_with_user_when_email_not_verified(self):
-        user = UserFactory.create(password='')
+        user = UserFactory.create(password='myPassword2016', )
 
         social_account = SocialAccount.objects.create(
             user=user,
