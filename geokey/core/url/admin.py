@@ -199,6 +199,9 @@ urlpatterns = [
     url(r'^profile/$',
         user_views.UserProfile.as_view(),
         name='userprofile'),
+    url(r'^accounts/(?P<account_id>[0-9]+)/disconnect/$',
+        user_views.AccountDisconnect.as_view(),
+        name='account_disconnect'),
 
     # ###########################
     # SUPERUSER TOOLS
