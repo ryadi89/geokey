@@ -55,7 +55,7 @@
 
                     <li class="clearfix">
                         <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
-                        <h5>{{ provider_account.get_brand.name }}</h5>
+                        <h5>{{ provider_account }}</h5>
                         <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-sm btn-default pull-right">Disconnect</a>
                     </li>
 
