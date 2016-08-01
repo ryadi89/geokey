@@ -5,7 +5,7 @@
 {% block main %}
 <div class="page-header">
     <div class="container">
-        <h1>Superuser tools</h1>
+        <h2>Superuser tools</h2>
         {% include 'superusertools/navigation.html' %}
     </div>
 </div>
@@ -18,7 +18,7 @@
             <form method="POST" action="{% url 'admin:superusertools_platform_settings' %}" novalidate>
                 {% csrf_token %}
 
-                <h3 class="header">General settings</h3>
+                <h2 class="header">General settings</h2>
 
                 <div class="form-group">
                     <label for="name">Name</label>
