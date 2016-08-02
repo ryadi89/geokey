@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+{% load social %}
 
 {% block title %} | Your profile{% endblock %}
 
 {% block main %}
+{% get_social_apps as social_apps %}
+
 <div class="page-header">
     <div class="container">
         <h1>Your profile</h1>
@@ -13,7 +16,7 @@
     {% include 'snippets/messages.html' %}
 
     <div class="row">
-        <div class="col-md-6 {% if not apps %}col-md-push-3{% endif %}">
+        <div class="col-md-6 {% if not social_apps %}col-md-push-3{% endif %}">
             <h3 class="header">Profile information</h3>
 
             <form role="form" action="{% url 'admin:userprofile' %}" method="POST" novalidate>
@@ -38,15 +41,15 @@
             </form>
         </div>
 
-        {% if apps %}
+        {% if social_apps %}
             <div class="col-md-6">
                 <h3 class="header">Social accounts</h3>
 
-                <h4>Get connected</h4>
+                <h4>Connect your social accounts</h4>
 
                 {% include 'snippets/social_apps.html' with process='connect' %}
 
-                <h4>Your connected accounts</h4>
+                <h4>Currently connected accounts</h4>
 
                 {% for account in accounts %}
                     {% with account.get_provider_account as provider_account %}

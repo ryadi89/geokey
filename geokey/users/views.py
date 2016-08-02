@@ -5,7 +5,6 @@ from django.views.generic import TemplateView, CreateView
 from django.shortcuts import redirect
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
-from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.utils.html import strip_tags
@@ -14,9 +13,8 @@ from django.utils.safestring import mark_safe
 from braces.views import LoginRequiredMixin
 
 from allauth.account.models import EmailAddress
-from allauth.socialaccount import providers
 from allauth.socialaccount.adapter import get_adapter
-from allauth.socialaccount.models import SocialApp, SocialAccount
+from allauth.socialaccount.models import SocialAccount
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -508,26 +506,13 @@ class UserProfile(LoginRequiredMixin, TemplateView):
         """
         Return the context to render the view.
 
-        Add user accounts to the context.
+        Add social accounts for user to the context.
 
         Returns
         -------
         dict
         """
-        social_apps = SocialApp.objects.exclude(
-            Q(client_id__exact='') |
-            Q(secret__exact='')).distinct()
-
-        for social_app in social_apps:
-            try:
-                provider = providers.registry.by_id(social_app.provider)
-            except:
-                provider = None
-
-            social_app.provider = provider
-
         return super(UserProfile, self).get_context_data(
-            apps=social_apps,
             accounts=SocialAccount.objects.filter(user=self.request.user),
             *args,
             **kwargs

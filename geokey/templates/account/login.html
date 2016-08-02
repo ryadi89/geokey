@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load social %}
 
 {% block title %} | Sign in{% endblock %}
 
@@ -7,6 +8,8 @@ class="login"
 {% endblock %}
 
 {% block main %}
+{% get_social_apps as social_apps %}
+
 <div class="container">
     {% include 'snippets/messages.html' %}
 
@@ -16,7 +19,7 @@ class="login"
 
             <p class="text-center text-lowercase">Use your social account</p>
 
-            {% include 'snippets/social_providers.html' with process='login' %}
+            {% include 'snippets/social_apps.html' with process='login' %}
 
             <p class="text-center text-lowercase">Or your email address</p>
 

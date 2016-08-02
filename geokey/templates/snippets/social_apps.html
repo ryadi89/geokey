@@ -1,11 +1,11 @@
 {% load socialaccount %}
 
-{% if apps %}
+{% if social_apps %}
     <div class="list-group social">
-        {% for app in apps %}
-            <a type="button" href="{% provider_login_url app.provider.id process=process scope=scope auth_params=auth_params %}" class="list-group-item">
-                <img src="/static/img/social/{{ app.provider.id }}.svg" alt="{{ app.provider.name }}" />
-                <h5>{{ app.name }}</h5>
+        {% for social_app in social_apps %}
+            <a type="button" href="{% provider_login_url social_app.provider.id process=process scope=scope auth_params=auth_params %}" class="list-group-item">
+                <img src="/static/img/social/{{ social_app.provider.id }}.svg" alt="{{ social_app.provider.name }}" />
+                <h5>{{ social_app.name }}</h5>
             </a>
         {% endfor %}
     </div>

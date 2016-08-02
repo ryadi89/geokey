@@ -807,7 +807,6 @@ class UserProfileTest(TestCase):
                 'GEOKEY_VERSION': version.get_version(),
                 'PLATFORM_NAME': get_current_site(self.request).name,
                 'user': self.request.user,
-                'apps': [],
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user)
             }
@@ -856,7 +855,6 @@ class UserProfileTest(TestCase):
                 'GEOKEY_VERSION': version.get_version(),
                 'PLATFORM_NAME': get_current_site(self.request).name,
                 'user': self.request.user,
-                'apps': [],
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user),
                 'messages': get_messages(self.request)
@@ -910,7 +908,6 @@ class UserProfileTest(TestCase):
                 'user': self.request.user,
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user),
-                'apps': [],
                 'messages': get_messages(self.request)
             }
         )
@@ -948,7 +945,6 @@ class UserProfileTest(TestCase):
                 'user': self.request.user,
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user),
-                'apps': [],
                 'messages': get_messages(self.request)
             }
         )
@@ -986,7 +982,6 @@ class UserProfileTest(TestCase):
                 'user': self.request.user,
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user),
-                'apps': [],
                 'messages': get_messages(self.request)
             }
         )
@@ -1015,7 +1010,6 @@ class UserProfileTest(TestCase):
                 'user': self.request.user,
                 'accounts': SocialAccount.objects.filter(
                     user=self.request.user),
-                'apps': [],
                 'messages': get_messages(self.request)
             }
         )
