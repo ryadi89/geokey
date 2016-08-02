@@ -134,6 +134,7 @@ ACCOUNT_FORMS = {
     'change_password': 'geokey.users.forms.CustomPasswordChangeForm',
     'reset_password_from_key': 'geokey.users.forms.CustomResetPasswordKeyForm'
 }
+SOCIALACCOUNT_ADAPTER = 'geokey.core.adapters.SocialAccountAdapter'
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
