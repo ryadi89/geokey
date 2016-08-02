@@ -152,26 +152,13 @@ class PlatformSettings(LoginRequiredMixin, SuperuserMixin, TemplateView):
         """
         Return the context to render the view.
 
-        Add a current site and social providers to the context.
+        Add a current site to the context.
 
         Returns
         -------
         dict
         """
-        social_providers = providers.registry.get_list()
-
-        for social_provider in social_providers:
-            try:
-                app = SocialApp.objects.get(name=social_provider.name)
-            except SocialApp.DoesNotExist:
-                app = None
-
-            social_provider.app = app
-
-        return {
-            'site': get_current_site(self.request),
-            'social_providers': social_providers
-        }
+        return {'site': get_current_site(self.request)}
 
     def post(self, request):
         """
