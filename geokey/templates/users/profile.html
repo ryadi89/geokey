@@ -13,7 +13,7 @@
     {% include 'snippets/messages.html' %}
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 {% if not apps %}col-md-push-3{% endif %}">
             <h3 class="header">Profile information</h3>
 
             <form role="form" action="{% url 'admin:userprofile' %}" method="POST" novalidate>
@@ -38,37 +38,39 @@
             </form>
         </div>
 
-        <div class="col-md-6">
-            <h3 class="header">Social accounts</h3>
+        {% if apps %}
+            <div class="col-md-6">
+                <h3 class="header">Social accounts</h3>
 
-            <h4>Get connected</h4>
+                <h4>Get connected</h4>
 
-            {% include 'snippets/social_providers.html' with process='connect' %}
+                {% include 'snippets/social_apps.html' with process='connect' %}
 
-            <h4>Your connected accounts</h4>
+                <h4>Your connected accounts</h4>
 
-            {% for account in accounts %}
-                {% with account.get_provider_account as provider_account %}
-                    {% if forloop.first %}
-                        <ul class="list-unstyled overview-list social">
-                    {% endif %}
+                {% for account in accounts %}
+                    {% with account.get_provider_account as provider_account %}
+                        {% if forloop.first %}
+                            <ul class="list-unstyled overview-list social">
+                        {% endif %}
 
-                    <li class="clearfix">
-                        <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
-                        <h5>{{ provider_account }}</h5>
-                        <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-sm btn-default pull-right">Disconnect</a>
-                    </li>
+                        <li class="clearfix">
+                            <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
+                            <h5>{{ provider_account }}</h5>
+                            <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-sm btn-default pull-right">Disconnect</a>
+                        </li>
 
-                    {% if forloop.last %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
-            {% empty %}
-                <div class="well">
-                    <p class="lead">You haven't connected any social accounts yet.</p>
-                </div>
-            {% endfor %}
-        </div>
+                        {% if forloop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                {% empty %}
+                    <div class="well">
+                        <p class="lead">You haven't connected any social accounts yet.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
