@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+{% load social %}
+
+{% get_social_apps as social_apps %}
+
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
@@ -25,59 +29,63 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12 super-heading">
+                    <div class="col-md-12 super-heading">
                         <h1>{{ PLATFORM_NAME }}</h1>
-                    </div>
 
-                    <div class="col-sm-12 col-md-7 super-heading">
-                        <p>{{ PLATFORM_NAME }} is an open platform for participatory mapping. It enables your community to record, view and discuss local knowledge using digital maps.</p>
-                    </div>
-
-                    <div class="col-sm-12 col-md-5">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <h3>Sign in</h3>
-
-                                        <form method="POST" action="/admin/account/login/">
-                                            {% csrf_token %}
-
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="login" name="login" placeholder="Email address" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
-                                            </div>
-
-                                            <button type="submit" class="btn btn-success">Sign in</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <h3>New to {{ PLATFORM_NAME }}?</h3>
-                                        <a href="/admin/account/signup/" class="btn btn-primary">Sign up here</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <p>Welcome to an open platform for participatory mapping.</p>
+                        <p>Join the community and record, view, discuss local knowledge using digital maps.</p>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12 footer">
+                    <div class="col-md-6">
+                        <h3 class="header">Sign in with email address</h3>
+
+                        <form role="form" action="{% url 'account_login' %}" method="POST" novalidate>
+                            {% csrf_token %}
+
+                            <div class="form-group {% if form.login.errors %}has-error{% endif %}">
+                                <label for="login">Email address</label>
+                                <input type="email" class="form-control input-lg" id="login" name="login" required />
+                            </div>
+
+                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control input-lg" id="password" name="password" required />
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Sign me in</button>
+                                <a role="button" href="{% url 'account_reset_password' %}" class="btn btn-link">Forgot Password?</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3 class="header">Sign in with social account</h3>
+                        {% include 'snippets/social_apps.html' with process='login' %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>New to {{ PLATFORM_NAME }}? Use your social account to sign in or <a href="{% url 'account_signup' %}">sign up using an email address</a>.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 footer">
                         <div class="panel panel-default">
-                            <div class="panel-body">Created by <a href="http://www.ucl.ac.uk/excites">ExCiteS research group</a> &bull; <a href="https://github.com/ExCiteS/geokey">Contribute on Github</a></div>
+                            <div class="panel-body">GeoKey created by <a href="http://www.ucl.ac.uk/excites">ExCiteS research group</a> &bull; <a href="https://github.com/ExCiteS/geokey">Contribute on GitHub</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/static/lib/jquery/jquery-1.12.0.min.js"><\/script>');</script>
+        <script src="/static/js/admin.ui.forms.validate.js"></script>
 
         {% include 'snippets/google_analytics.html' %}
     </body>
