@@ -16,7 +16,7 @@ body {
 #home {
     display: flex;
     flex-direction: column;
-	background: #373f45 url(../img/blurry.jpg) no-repeat 50% 50%;
+	background: #373f45 url(../img/blurry.jpg) no-repeat 50% 50% fixed;
 	background-size: cover;
     color: #fff;
 }
