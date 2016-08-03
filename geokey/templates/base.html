@@ -21,23 +21,41 @@
 				<div class="navbar-header">
 					{% if not user.is_anonymous %}
     					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle menu navigation</span>
     						<span class="icon-bar"></span>
     						<span class="icon-bar"></span>
     						<span class="icon-bar"></span>
     					</button>
 					{% endif %}
 
-					<a class="navbar-brand" href="/admin/">{{ PLATFORM_NAME }}</a>
+					<h1><a href="{% url 'admin:index'%}" class="navbar-brand">{{ PLATFORM_NAME }}</a></h1>
 				</div>
 
 				{% if not user.is_anonymous %}
-    				<div class="navbar-collapse collapse">
+    				<nav class="navbar-collapse collapse">
     					<ul class="nav navbar-nav navbar-right">
-    						<li><a href="/admin/"><span class="glyphicon glyphicon-th"></span> Dashboard</a></li>
-    						<li><a href="{% url 'admin:userprofile'%}"><span class="glyphicon glyphicon-user"></span> {{ user.display_name }}</a></li>
-    						<li><a href="/admin/account/logout/"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
+    						<li>
+                                <a href="{% url 'admin:dashboard'%}">
+                                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+
+    						<li>
+                                <a href="{% url 'admin:userprofile'%}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span>{{ user.display_name }}</span>
+                                </a>
+                            </li>
+
+    						<li>
+                                <a href="/admin/account/logout/">
+                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                                    <span>Sign out</span>
+                                </a>
+                            </li>
     					</ul>
-    				</div>
+    				</nav>
 				{% endif %}
 			</div>
 		</div>
@@ -46,7 +64,7 @@
     		{% if error %}
     			{% include 'snippets/error.html' %}
     		{% else %}
-    			{% block main %} {% endblock %}
+    			{% block main %}{% endblock %}
     		{% endif %}
         </main>
 
