@@ -29,6 +29,11 @@ a.light:hover {
     flex: 1;
 }
 
+#base {
+    display: flex;
+    flex-direction: column;
+}
+
 #home {
     display: flex;
     flex-direction: column;
