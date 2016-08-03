@@ -1,56 +1,46 @@
 html, body {
 	margin: 0;
+    width: 100%;
+}
+html {
     height: 100%;
 }
-
 body {
-	padding-bottom: 20px;
+    min-height: 100%;
 }
 
-body#home {
+#content {
+    flex: 1;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
 	background: #373f45 url(../img/blurry.jpg) no-repeat 50% 50%;
 	background-size: cover;
-	height: 100%;
+    color: #fff;
 }
-
-body#home div.jumbotron {
-	background-color: transparent;
-	padding: 10px 0;
+#home a.light {
+    color: #fff;
+    text-decoration: underline;
 }
-
-	body#home div.jumbotron div.credit {
-		margin-bottom: 90px;
-		font-size: 12px;
-	}
-
-	body#home div.jumbotron div.credit a {
-		color: #333;
-		text-decoration: underline;
-	}
-
-	body#home div.jumbotron .super-heading {
-		text-shadow: 0 0 10px #555;
-		color: #fff;
-	}
-
-	body#home div.jumbotron h1 {
-		margin-top: 0;
-	}
-
-	body#home div.jumbotron .footer {
-		font-size: 14px;
-		font-weight: normal;
-	}
-
-	body#home div.jumbotron .footer .panel-default {
-		text-align: center;
-		background-color: rgba(255,255,255,0.7);
-		border: none;
-	}
-
-	body#home div.jumbotron .footer .panel-default .panel-body {
-		padding: 5px;
-	}
+#home a.light:hover {
+    color: rgb(32, 32, 32);
+    text-decoration: underline;
+}
+#home .jumbotron {
+    padding: 10px 0;
+    background-color: transparent;
+}
+#home .credits {
+    margin-top: 20px;
+    margin-bottom: 80px;
+    font-size: 16px;
+}
+#home .authentication {
+    padding-top: 30px;
+    background-color: rgba(32, 32, 32, 0.3);
+}
 
 body.login {
 	padding-top: 90px;

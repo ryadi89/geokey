@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 
 {% load social %}
-
 {% get_social_apps as social_apps %}
 
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><html class="no-js"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><html lang="en" class="no-js"><![endif]-->
     <head>
 		<title>{{ PLATFORM_NAME }}</title>
         <meta charset="utf-8">
@@ -16,72 +14,66 @@
 
         <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/admin.css">
+
         <script src="/static/lib/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
 
     <body id="home">
-        <div class="jumbotron">
+        <main id="content">
             <div class="container">
-                <div class="credit">
+                <div class="credits">
                     <span>Background image by</span>
-                    <a href="https://flic.kr/p/gJuU8W" alt="Mariya Chorna">Mariya Chorna</a>
-                    (<a href="https://creativecommons.org/licenses/by/2.0/" alt="Creative Commons License - Generic">CC BY 2.0</a>)
+                    <a href="https://flic.kr/p/gJuU8W" target="_blank" title="Mariya Chorna" class="light">Mariya Chorna</a>
+                    (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" title="Creative Commons License - Generic" class="light">CC BY 2.0</a>)
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12 super-heading">
-                        <h1>{{ PLATFORM_NAME }}</h1>
-
-                        <p>Welcome to an open platform for participatory mapping.</p>
-                        <p>Join the community and record, view, discuss local knowledge using digital maps.</p>
-                    </div>
+                <div class="jumbotron">
+                    <h1>{{ PLATFORM_NAME }}</h1>
+                    <p>Welcome to an open platform for participatory mapping.</p>
+                    <p>Join the community and record, view, discuss local knowledge using digital maps.</p>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3 class="header">Sign in with email address</h3>
+            <div class="authentication">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="header">Sign in with email address</h3>
 
-                        <form role="form" action="{% url 'account_login' %}" method="POST" novalidate>
-                            {% csrf_token %}
+                            <form action="{% url 'account_login' %}" method="POST" novalidate>
+                                {% csrf_token %}
 
-                            <div class="form-group {% if form.login.errors %}has-error{% endif %}">
-                                <label for="login">Email address</label>
-                                <input type="email" class="form-control input-lg" id="login" name="login" required />
-                            </div>
+                                <div class="form-group {% if form.login.errors %}has-error{% endif %}">
+                                    <label for="login">Email address</label>
+                                    <input type="email" class="form-control input-lg" id="login" name="login" required />
+                                </div>
 
-                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control input-lg" id="password" name="password" required />
-                            </div>
+                                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control input-lg" id="password" name="password" required />
+                                </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Sign me in</button>
-                                <a role="button" href="{% url 'account_reset_password' %}" class="btn btn-link">Forgot Password?</a>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Sign me in</button>
+                                    <a role="button" href="{% url 'account_reset_password' %}" class="btn btn-link light">Forgot Password?</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h3 class="header">Sign in with social account</h3>
+                            {% include 'snippets/social_apps.html' with process='login' %}
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <h3 class="header">Sign in with social account</h3>
-                        {% include 'snippets/social_apps.html' with process='login' %}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>New to {{ PLATFORM_NAME }}? Use your social account to sign in or <a href="{% url 'account_signup' %}">sign up using an email address</a>.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 footer">
-                        <div class="panel panel-default">
-                            <div class="panel-body">GeoKey created by <a href="http://www.ucl.ac.uk/excites">ExCiteS research group</a> &bull; <a href="https://github.com/ExCiteS/geokey">Contribute on GitHub</a></div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>New to {{ PLATFORM_NAME }}? Use your social account to sign in or <a href="{% url 'account_signup' %}" class="light">sign up using an email address</a>.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
 
         {% include 'snippets/footer.html' %}
 
