@@ -10,6 +10,21 @@ body {
     font-size: 16px;
 }
 
+footer {
+    padding: 30px 0px;
+    background-color: rgba(32, 32, 32, 0.9);
+    color: #fff;
+}
+
+a.light {
+    color: #fff;
+    text-decoration: underline;
+}
+a.light:hover {
+    color: rgb(32, 32, 32);
+    text-decoration: underline;
+}
+
 #content {
     flex: 1;
 }
@@ -21,14 +36,6 @@ body {
 	background-size: cover;
     color: #fff;
 }
-#home a.light {
-    color: #fff;
-    text-decoration: underline;
-}
-#home a.light:hover {
-    color: rgb(32, 32, 32);
-    text-decoration: underline;
-}
 #home .jumbotron {
     padding: 10px 0;
     background-color: transparent;
@@ -36,7 +43,6 @@ body {
 #home .credits {
     margin-top: 20px;
     margin-bottom: 80px;
-    font-size: 16px;
 }
 #home .authentication {
     padding-top: 30px;
@@ -250,16 +256,6 @@ ul.type-away {
 
 .field-filter input[type="number"] {
 	width: 100px;
-}
-
-footer {
-	padding-top: 30px;
-	background-color: #202020;
-	color: #fff;
-}
-
-footer p {
-	margin: 0;
 }
 
 .settings-link {
