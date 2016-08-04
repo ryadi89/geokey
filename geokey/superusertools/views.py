@@ -87,6 +87,7 @@ class ManageInactiveUsers(LoginRequiredMixin, SuperuserMixin, TemplateView):
         if inactive_users:
             active_users = inactive_users.filter(
                 id__in=data.getlist('activate_users'))
+            in_total = len(active_users)
 
             for email in EmailAddress.objects.filter(user__in=active_users):
                 email.verified = True
@@ -96,8 +97,7 @@ class ManageInactiveUsers(LoginRequiredMixin, SuperuserMixin, TemplateView):
             active_users.update(is_active=True)
             messages.success(
                 self.request,
-                '%s users were activated.' % len(active_users)
-            )
+                '%s user(s) has been activated.' % in_total)
             context['inactive_users'] = User.objects.filter(is_active=False)
 
         return self.render_to_response(context)
