@@ -45,6 +45,9 @@ a.light:hover {
     padding: 10px 0;
     background-color: transparent;
 }
+#home .jumbotron p {
+    font-size: 28px;
+}
 #home .credits {
     margin-top: 20px;
     margin-bottom: 80px;
