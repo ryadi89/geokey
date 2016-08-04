@@ -50,8 +50,10 @@ a.light:hover {
     margin-bottom: 80px;
 }
 #home .authentication {
-    padding-top: 30px;
     background-color: rgba(32, 32, 32, 0.3);
+}
+#home .authentication h2 {
+    padding: 25px 0;
 }
 
 body.login {
