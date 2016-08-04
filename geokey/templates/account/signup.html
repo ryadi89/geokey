@@ -24,7 +24,7 @@
                 </div>
             {% endif %}
 
-            <form role="form" action="{% url 'account_signup' %}" method="POST" novalidate>
+            <form action="{% url 'account_signup' %}" method="POST" novalidate>
                 {% csrf_token %}
 
                 <div class="form-group {% if form.email.errors %}has-error{% endif %}">

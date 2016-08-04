@@ -30,7 +30,7 @@
                 </div>
             {% endif %}
 
-            <form role="form" action="{% url 'account_login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" method="POST" novalidate>
+            <form action="{% url 'account_login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" method="POST" novalidate>
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.REQUEST.next }}" />
 
