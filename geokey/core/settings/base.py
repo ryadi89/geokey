@@ -120,6 +120,7 @@ LOGIN_URL = '/admin/account/login/'
 
 # django-allauth settings
 # see: http://django-allauth.readthedocs.org/en/latest/configuration.html
+ACCOUNT_ADAPTER = 'geokey.core.adapters.AccountAdapter'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/admin/account/login/'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'display_name'
 ACCOUNT_EMAIL_REQUIRED = True
