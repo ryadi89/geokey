@@ -120,20 +120,38 @@ h6:first-child {
 	margin-top: 0;
 }
 
+h1 {
+    font-size: 36px;
+}
 h1.smaller {
-	font-size: 24px;
+	font-size: 28px;
 	font-weight: normal;
 }
-
 h1.smaller a:link,
 h1.smaller a:visited {
 	color: rgb(51, 51, 51);
 }
-
 h1.smaller a:hover,
 h1.smaller a:focus {
 	color: rgb(66, 139, 202);
 	text-decoration: none;
+}
+
+h2 {
+    font-size: 32px;
+}
+h2.smaller {
+    font-size: 24px;
+    font-weight: normal;
+}
+h2.smaller a:link,
+h2.smaller a:visited {
+    color: rgb(51, 51, 51);
+}
+h2.smaller a:hover,
+h2.smaller a:focus {
+    color: rgb(66, 139, 202);
+    text-decoration: none;
 }
 
 .navbar h1 {
