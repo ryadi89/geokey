@@ -12,6 +12,7 @@ addons:
 env:
   - DJANGO='>=1.8,<1.9'
   - DJANGO='>=1.9,<1.10'
+  - DJANGO='>=1.10,<1.11'
 
 virtualenv:
   system_site_packages: true
