@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{% load social %}
-
 {% block title %} | Your profile{% endblock %}
+
+{% load social %}
 
 {% block main %}
 {% get_social_apps as social_apps %}
-
 <div class="page-header">
     <div class="container">
-        <h1>Your profile</h1>
+        <h2>Your profile</h2>
     </div>
 </div>
 
@@ -16,7 +15,7 @@
     {% include 'snippets/messages.html' %}
 
     <div class="row">
-        <div class="col-md-6 {% if not social_apps %}col-md-push-3{% endif %}">
+        <div class="col-md-6 {% if not social_apps %}col-sm-8 col-sm-offset-2 col-md-offset-3{% endif %}">
             <h3 class="header">Profile information</h3>
 
             <form action="{% url 'admin:userprofile' %}" method="POST" novalidate>
@@ -35,21 +34,19 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Update profile</button>
-                    <a type="button" href="{% url 'account_change_password' %}" class="btn btn-link">Change password</a>
+                    <button type="submit" class="btn btn-lg btn-primary">Update profile</button>
+                    <a type="button" href="{% url 'account_change_password' %}" class="btn btn-lg btn-link">{% if user.has_usable_password %}Change password{% else %}Set password{% endif %}</a>
                 </div>
             </form>
         </div>
 
         {% if social_apps %}
             <div class="col-md-6">
-                <h3 class="header">Social accounts</h3>
-
-                <h4>Connect your social accounts</h4>
+                <h3 class="header">Connect social accounts</h3>
 
                 {% include 'snippets/social_apps.html' with process='connect' %}
 
-                <h4>Currently connected accounts</h4>
+                <h3 class="header">Your connected accounts</h3>
 
                 {% for account in accounts %}
                     {% with account.get_provider_account as provider_account %}
@@ -59,8 +56,8 @@
 
                         <li class="clearfix">
                             <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
-                            <h5>{{ provider_account }}</h5>
-                            <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-sm btn-default pull-right">Disconnect</a>
+                            <h4>{{ provider_account }}</h4>
+                            <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-lg btn-default pull-right">Disconnect</a>
                         </li>
 
                         {% if forloop.last %}
