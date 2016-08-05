@@ -46,29 +46,27 @@
 
                 {% include 'snippets/social_apps.html' with process='connect' %}
 
-                <h3 class="header">Your connected accounts</h3>
+                {% if accounts %}
+                    <h3 class="header">Your connected accounts</h3>
 
-                {% for account in accounts %}
-                    {% with account.get_provider_account as provider_account %}
-                        {% if forloop.first %}
-                            <ul class="list-unstyled overview-list social">
-                        {% endif %}
+                    {% for account in accounts %}
+                        {% with account.get_provider_account as provider_account %}
+                            {% if forloop.first %}
+                                <ul class="list-unstyled overview-list social">
+                            {% endif %}
 
-                        <li class="clearfix">
-                            <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
-                            <h4>{{ provider_account }}</h4>
-                            <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-lg btn-default pull-right">Disconnect</a>
-                        </li>
+                            <li class="clearfix">
+                                <img src="/static/img/social/{{ provider_account.get_brand.id }}.svg" alt="{{ provider_account.get_brand.name }}" />
+                                <h4>{{ provider_account }}</h4>
+                                <a role="button" href="{% url 'admin:account_disconnect' account.id %}" class="btn btn-lg btn-default pull-right">Disconnect</a>
+                            </li>
 
-                        {% if forloop.last %}
-                            </ul>
-                        {% endif %}
-                    {% endwith %}
-                {% empty %}
-                    <div class="well">
-                        <p class="lead">You haven't connected any social accounts yet.</p>
-                    </div>
-                {% endfor %}
+                            {% if forloop.last %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endif %}
             </div>
         {% endif %}
     </div>
