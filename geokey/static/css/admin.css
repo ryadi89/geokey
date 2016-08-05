@@ -59,17 +59,9 @@ a.light:hover {
     padding: 25px 0;
 }
 
-body.login {
-	padding-top: 90px;
-}
-
-body.login div.page-header {
-	margin-top: -40px;
-}
-
 .alert ul {
-	margin-left: 0;
-	padding-left: 25px;
+    margin-left: 0;
+    padding-left: 25px;
 }
 
 .row {
