@@ -84,7 +84,7 @@ def kml_desc(place):
                 if file['file_type'] == 'VideoFile':
                     file['url'] = file['url'].replace('embed/', 'watch?v=')
 
-                description += '<tr><td><strong>{name}</strong>{desc}<br /><a href="{url}"><img src="{thumbnail_url}" /></a></td></tr>'.format(
+                description += '<tr><td><strong>{name}</strong>{desc}<br /><a href="{url}"><img src="{thumbnail_url}" alt="" /></a></td></tr>'.format(
                     name=file['name'],
                     desc='<br />%s' % file['description'] if file['description'] else '',
                     url=file['url'],

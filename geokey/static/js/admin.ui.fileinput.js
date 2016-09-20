@@ -25,7 +25,7 @@ $(function(global) {
         }
 
         if (field.attr('data-preview')) {
-            settings.initialPreview = '<img src="' + field.attr('data-preview') + '" class="file-preview-image">';
+            settings.initialPreview = '<img src="' + field.attr('data-preview') + '" alt="" class="file-preview-image">';
         }
 
         field.fileinput(settings);
