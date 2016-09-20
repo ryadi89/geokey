@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'geokey',
         'USER': 'django',
         'PASSWORD': 'django123',
-        'HOST': 'localhost',  # usually 'localhost'
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
