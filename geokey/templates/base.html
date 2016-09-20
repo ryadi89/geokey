@@ -17,7 +17,6 @@
 	</head>
 
 	<body{% block bodydata %} {% endblock %}>
-		<header>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -44,14 +43,13 @@
 				{% endif %}
 			</div>
 		</div>
-		</header>
-		<main>
+
 		{% if error %}
 			{% include 'snippets/error.html' %}
 		{% else %}
 			{% block main %} {% endblock %}
 		{% endif %}
-		</main>
+
 		<footer>
 			<div class="container">
 				<div class="row">
